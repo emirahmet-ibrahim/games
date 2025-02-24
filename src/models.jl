@@ -3,10 +3,9 @@ module Models
 using LinearAlgebra
 using NNlib: softmax
 
-export NEE, QRE, NI, LK1, LKr, QLK, HNI1, HNIr
+export NEE, QRE, NI, LK1, LKr, QLK, HNI1, HNIr, QPLK
 export CH1, CHr, GCH1, GCHr, QCH1, QCHr, LM1, LMr
 export level0, poisson, hardmax, belief, Random
-export SLK1, SLKr, SCH1, SCHr, QPLK
 
 ## Helper functions
 # Level-0 behavior
@@ -238,36 +237,5 @@ function NEE(u::Function, a::Vector{Int}, θ::Vector{<:Real})
     p_rand = Random(u, a);
     return θ[1] * p_rand + (1-θ[1]) * p_nash
 end
-
-## SLK (Not included in the paper)
-function SLK(u::Function, a::Vector{Int}, f::Vector{<:Real}, ρ₀::Real, ρ₁::Real,
-                λ::Vector{<:Real})
-    n = length(a);
-    P = zeros(n, 3);  # level-k chooses a[i] with probability P[i,k+1]
-    P[:,1] = level0(ρ₀, n);
-    P[:,2] = softmax(λ[1] * u(a, P[:,1])); # level-1 quantal respond to level-0
-    q = ρ₁ * P[:,1] + (1-ρ₁) * P[:,2]; # level-2's belief
-    P[:,3] = softmax(λ[2] * u(a, q)); # level-2 quantal respond to q
-    return P * f / sum(f)
-end
-
-SLK1(u::Function, a::Vector{Int}, θ::Vector{<:Real}) = SLK(u, a, θ[1:3], 1.0, θ[4], θ[5:6]);
-SLKr(u::Function, a::Vector{Int}, θ::Vector{<:Real}) = SLK(u, a, θ[1:3], θ[4], θ[5], θ[6:7]);
-
-
-## SCH (Not included in the paper)
-function SCH(u::Function, a::Vector{Int}, f::Vector{<:Real}, ρ::Real,
-                λ::Vector{<:Real})
-    n = length(a);
-    P = zeros(n, 3);  # level-k chooses a[i] with probability P[i,k+1]
-    P[:,1] = level0(ρ, n);
-    P[:,2] = softmax(λ[1] * u(a, P[:,1])); # level-1 quantal respond to level-0
-    q = P[:,1:2] * belief(f[1:2]); # level-2's belief
-    P[:,3] = softmax(λ[2] * u(a, q)); # level-2 quantal respond to q
-    return P * f / sum(f)
-end
-
-SCH1(u::Function, a::Vector{Int}, θ::Vector{<:Real}) = SCH(u, a, θ[1:3], 1, θ[4:5]);
-SCHr(u::Function, a::Vector{Int}, θ::Vector{<:Real}) = SCH(u, a, θ[1:3], θ[4], θ[5:6]);
 
 end # of module
