@@ -8,7 +8,7 @@ using Statistics: mean, std
 using Combinatorics: combinations
 using Printf: @printf
 
-export NLL, MSD, MAE, Brier, AIC, BIC, ENLL, EBrier, obj, fit, train, Vuong
+export NLL, MSD, MAE, AIC, BIC, ENLL, obj, fit, train, Vuong
 export NEE, QRE, NI, LK1, LKr, QLK, HNI1, HNIr, QPLK
 export CH1, CHr, GCH1, GCHr, QCH1, QCHr, LM1, LMr
 export level0, poisson, hardmax, belief, Random
@@ -37,18 +37,6 @@ MSD(θ, model::Function, G::Game, games) = Loss(msd, θ, model, G, games)/length
 mae(f::Vector, p::Vector) = mean(abs, f/sum(f) - p) * 1e+2;
 MAE(θ, model::Function, G::Game, games) = Loss(mae, θ, model, G, games)/length(games);
 
-# Brier score
-function brier(f::Vector, p::Vector)
-    n = length(f);
-    score = 0.0;
-    for i = 1:n
-        e = [Float64(i==j) for j=1:n];
-        score += f[i] * sum(abs2, e - p) * 1e4;
-    end
-    return score / sum(f);
-end
-Brier(θ, model::Function, G::Game, games) = Loss(brier, θ, model, G, games)/length(games);
-
 AIC(nlogL, k) = @. 2(nlogL + k);
 BIC(nlogL, k) = 2nlogL + k * log.([10, 10, 20]);
 
@@ -60,15 +48,6 @@ function ENLL(G::Game, games)
         L += nloglike(G.f[i], p);
     end
     return L
-end
-# Brier score for empirical choice probabilities
-function EBrier(G::Game, games)
-    L = 0.0;
-    for i in games
-        p = max.(1e-12, G.f[i]/sum(G.f[i]));
-        L += brier(G.f[i], p);
-    end
-    return L / length(games);
 end
 
 ## Search range for model parameters: model => (θ, search range, population size)
@@ -109,6 +88,7 @@ function obj(model::Function, loss::Function, G::Game; games=1:10)
         return θ -> loss(θ, model, G, games)
     end
 end
+
 # Objective function for bboptimize: all-player games
 function obj(model::Function, loss::Function, G2::Game, G3::Game;
                 games::Tuple=(1:10, 1:10))
