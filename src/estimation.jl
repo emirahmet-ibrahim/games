@@ -8,7 +8,7 @@ using Statistics: mean, std
 using Combinatorics: combinations
 using Printf: @printf
 
-export NLL, MSD, MAE, AIC, BIC, ENLL, obj, fit, train, Vuong
+export NLL, MSD, MAE, AIC, BIC, ENLL, fit, train, Vuong
 export NEE, QRE, NI, LK1, LKr, QLK, HNI1, HNIr, QPLK
 export CH1, CHr, GCH1, GCHr, QCH1, QCHr, LM1, LMr
 export level0, poisson, hardmax, belief, Random
