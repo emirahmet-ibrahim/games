@@ -9,10 +9,9 @@ using Combinatorics: combinations
 using Printf: @printf
 
 export NLL, MSD, MAE, Brier, AIC, BIC, ENLL, EBrier, obj, fit, train, Vuong
-export NEE, QRE, NI, LK1, LKr, QLK, HNI1, HNIr
-export CH1, CHr, GCH1, GCHr, QCH1, QCHr, LM1, LMr, QPLK
+export NEE, QRE, NI, LK1, LKr, QLK, HNI1, HNIr, QPLK
+export CH1, CHr, GCH1, GCHr, QCH1, QCHr, LM1, LMr
 export level0, poisson, hardmax, belief, Random
-export SLK1, SLKr, SCH1, SCHr
 export Game, G2, G3
 
 ## Loss function
