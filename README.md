@@ -2,6 +2,10 @@
 
 This repository contains the data and code necessary to reproduce the results presented in the paper *Behavioral Model Selection in Symmetric Normal-Form Games* (Emirahmetoglu, Goksel, Gurdal, 2025). The paper can be downloaded [here](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5204145).
 
+The [data](/data) folder contains the experimental results: 
+* [G2](/data/G2.csv) provides the results for the two-player games.
+* [G3](/data/G3.csv) provides the results for the three-player games.
+
 The [src](/src) folder includes the following Julia programs:
 * [games.jl](/src/games.jl) defines two- and three-player games (set of actions $A$, payoff function $u$, derivative of the payoff function $du$) and provides the observed choice frequencies $f$ for each game. 
 * [models.jl](/src/models.jl) defines the behavioral models.
