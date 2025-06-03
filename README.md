@@ -30,41 +30,41 @@ The [src](/src) folder includes the following Julia programs:
     include("estimation.jl");  using .Estimation
 
 (5) The function `fit` is for statistical fits, and `train` is for out-of-sample estimations. You need to pass the model, loss function, and games to these functions. 
-    (a) The models are NEE, QRE, LKr, LK1, CHr, CH1, NI, QLK, QCHr, QCH1, HNIr, HNI1, GCHr, GCH1, LMr, LM1, QPLK. 
-    (b) The loss functions are NLL, MSD, MAE.
-    (c) The games are G2 (two-player), G3 (three-player), and G2 & G3 (all games). 
+- The models are `NEE`, `QRE`, `LKr`, `LK1`, `CHr`, `CH1`, `NI`, `QLK`, `QCHr`, `QCH1`, `HNIr`, `HNI1`, `GCHr`, `GCH1`, `LMr`, `LM1`, `QPLK`. 
+- The loss functions are `NLL`, `MSD`, `MAE`.
+- The games are `G2` (two-player), `G3` (three-player), and `G2` & `G3` (all games). 
 
-To find the statistical fit of the "model" in the games "G" using the "loss" function, you simply run
+To find the statistical fit of the `model` in the games `G` using the `loss` function, you simply run
 
     fit(model, loss, G)
 
-To find the out-of-sample estimation of the "model" in the games "G" using the "loss" function, you simply run
+To find the out-of-sample estimation of the `model` in the games `G` using the `loss` function, you simply run
 
     train(model, loss, G)
 
-The results will be saved in the subfolders "statistical_fit" and "out_of_sample" you created under the "code" folder.
+The results will be saved in the subfolders "statistical_fit" and "out_of_sample" you created under the [src](/src) folder.
 
-For example, to find the statistical fit of QRE in two-player games using NLL, run 
+For example, to find the statistical fit of `QRE` in two-player games using `NLL`, run 
 
     fit(QRE, NLL, G2)
 
-To find the statistical fit of CHr in three-player games using MSD, run 
+To find the statistical fit of `CHr` in three-player games using `MSD`, run 
 
     fit(CHr, MSD, G3)
 
-To find the statistical fit of NI in all games using MAE, run
+To find the statistical fit of `NI` in all games using `MAE`, run
 
     fit(NI, MAE, G2, G3)
 
-To find the out-of-sample estimations of QLK in two-player games using NLL, run
+To find the out-of-sample estimations of `QLK` in two-player games using `NLL`, run
 
     train(QLK, NLL, G2)
 
-To find the out-of-sample estimations of HNI1 in three-player games using MSD, run
+To find the out-of-sample estimations of `HNI1` in three-player games using `MSD`, run
 
     train(HNI1, MSD, G3)
 
-To find the out-of-sample estimations of QPLK in all games using MAE, run
+To find the out-of-sample estimations of `QPLK` in all games using `MAE`, run
 
     train(QPLK, MAE, G2, G3)
 
