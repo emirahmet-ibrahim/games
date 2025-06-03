@@ -30,9 +30,9 @@ The [src](/src) folder includes the following Julia programs:
     include("estimation.jl");  using .Estimation
 
 (5) The function `fit` is for statistical fits, and `train` is for out-of-sample estimations. You need to pass the model, loss function, and games to these functions. 
-- The models are `NEE`, `QRE`, `LKr`, `LK1`, `CHr`, `CH1`, `NI`, `QLK`, `QCHr`, `QCH1`, `HNIr`, `HNI1`, `GCHr`, `GCH1`, `LMr`, `LM1`, `QPLK`. 
-- The loss functions are `NLL`, `MSD`, `MAE`.
-- The games are `G2` (two-player), `G3` (three-player), and `G2` & `G3` (all games). 
+* The models are `NEE`, `QRE`, `LKr`, `LK1`, `CHr`, `CH1`, `NI`, `QLK`, `QCHr`, `QCH1`, `HNIr`, `HNI1`, `GCHr`, `GCH1`, `LMr`, `LM1`, `QPLK`. 
+* The loss functions are `NLL`, `MSD`, `MAE`.
+* The games are `G2` (two-player), `G3` (three-player), and `G2` & `G3` (all games). 
 
 To find the statistical fit of the `model` in the games `G` using the `loss` function, you simply run
 
