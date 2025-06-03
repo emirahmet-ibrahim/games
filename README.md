@@ -21,11 +21,11 @@ The [src](/src) folder includes the following Julia programs:
 
 (2) Create two subfolders in the [src](/src) folder, named "statistical_fit" and "out_of_sample". When you run the estimations, the results will be saved under these folders.
 
-(3) Make sure to install the following packages in Julia: BlackBoxOptim, Combinatorics, Distributions, GameTheory, LinearAlgebra, NNlib, Plots, Printf, and Statistics. For example, to install the LinearAlgebra package, run the following command in the Julia REPL:
+(3) Make sure to install the following packages in Julia: `BlackBoxOptim`, `Combinatorics`, `Distributions`, `GameTheory`, `LinearAlgebra`, `NNlib`, `Plots`, `Printf`, and `Statistics`. For example, to install the `LinearAlgebra` package, run the following command in the Julia REPL:
 
     import Pkg; Pkg.add("LinearAlgebra")
 
-(4) To reproduce the results, consider the "main.jl" file. When you run the following commands in the Julia REPL, all the necessary modules (Estimation, Games, and Models) will be imported, and you will be ready to execute any estimations:
+(4) To reproduce the results, consider the [main.jl](/src/main.jl) file. When you run the following commands in the Julia REPL, all the necessary modules (`Estimation`, `Games`, and `Models`) will be imported, and you will be ready to execute any estimations:
 
     include("estimation.jl");  using .Estimation
 
