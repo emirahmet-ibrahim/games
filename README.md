@@ -17,19 +17,19 @@ The [src](/src) folder includes the following Julia programs:
 
 (1) Make sure you have the [src](/src) folder in your current directory. To change your current directory, you can adapt and use the following command in the Julia REPL:
 
-    `cd("/Users/Desktop/games/src")`
+    cd("/Users/Desktop/games/src")
 
-(2) Create two subfolders in the "code" folder, named "statistical_fit" and "out_of_sample". When you run the estimations, the results will be saved under these folders.
+(2) Create two subfolders in the [src](/src) folder, named "statistical_fit" and "out_of_sample". When you run the estimations, the results will be saved under these folders.
 
 (3) Make sure to install the following packages in Julia: BlackBoxOptim, Combinatorics, Distributions, GameTheory, LinearAlgebra, NNlib, Plots, Printf, and Statistics. For example, to install the LinearAlgebra package, run the following command in the Julia REPL:
 
     import Pkg; Pkg.add("LinearAlgebra")
 
-(4) To reproduce the results given in the "results" folder, consider the "main.jl" file. When you run the following commands in the Julia REPL, all the necessary modules (Estimation, Games, and Models) will be imported, and you will be ready to execute any estimations:
+(4) To reproduce the results, consider the "main.jl" file. When you run the following commands in the Julia REPL, all the necessary modules (Estimation, Games, and Models) will be imported, and you will be ready to execute any estimations:
 
     include("estimation.jl");  using .Estimation
 
-(5) The function "fit" is for statistical fits, and "train" is for out-of-sample estimations. You need to pass the model, loss function, and games to these functions. 
+(5) The function `fit` is for statistical fits, and `train` is for out-of-sample estimations. You need to pass the model, loss function, and games to these functions. 
     (a) The models are NEE, QRE, LKr, LK1, CHr, CH1, NI, QLK, QCHr, QCH1, HNIr, HNI1, GCHr, GCH1, LMr, LM1, QPLK. 
     (b) The loss functions are NLL, MSD, MAE.
     (c) The games are G2 (two-player), G3 (three-player), and G2 & G3 (all games). 
